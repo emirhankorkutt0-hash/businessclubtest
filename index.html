@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kampüste Hangi İş İnsanı Ruhunu Taşıyorsun?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f7f7;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .question img, .result img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Kampüste Hangi İş İnsanı Ruhunu Taşıyorsun?</h1>
+
+  <div class="question">
+    <img src="images/soru1.png" alt="Soru 1">
+    <p>1. Kulüp toplantısında söz sana geldi. Ne yaparsın?</p>
+    <input type="radio" name="q1" value="1"> A) Sessiz kalırım 🙊<br>
+    <input type="radio" name="q1" value="2"> B) Fikrim varsa paylaşırım 💡<br>
+    <input type="radio" name="q1" value="3"> C) Önerilerimi sıralarım 🚀<br>
+  </div>
+
+  <div class="question">
+    <img src="images/soru2.png" alt="Soru 2">
+    <p>2. Kulübün hoşgeldin etkinliği başladı! Sen ne yapıyorsun?</p>
+    <input type="radio" name="q2" value="1"> A) Köşede takılırım 🍹<br>
+    <input type="radio" name="q2" value="2"> B) Sosyal kelebek olurum 💃🤝<br>
+    <input type="radio" name="q2" value="3"> C) Ortamı coştururum ✨<br>
+  </div>
+
+  <div class="question">
+    <img src="images/soru3.png" alt="Soru 3">
+    <p>3. Business Club’tan ne bekliyorsun?</p>
+    <input type="radio" name="q3" value="1"> A) “Sadece kulüp, bir yere kadar.” 🤔<br>
+    <input type="radio" name="q3" value="2"> B) Arkadaşlarla öğrenip network yapmayı 📚🤝<br>
+    <input type="radio" name="q3" value="3"> C) Etkinliklerde rol alıp fırsatları değerlendirmeyi 🚀<br>
+  </div>
+
+  <div class="question">
+    <img src="images/soru4.png" alt="Soru 4">
+    <p>4. Kulüp toplantısı sonrası seni nerede görürüz?</p>
+    <input type="radio" name="q4" value="1"> A) Yurdumda dinlenirken 🛌<br>
+    <input type="radio" name="q4" value="2"> B) Henry Ford’da sohbet ederken ☕<br>
+    <input type="radio" name="q4" value="3"> C) Baba’s’ta kaynaşırken 🍻<br>
+  </div>
+
+  <div class="question">
+    <img src="images/soru5.png" alt="Soru 5">
+    <p>5. Kulüp etkinliklerinde görev dağılımında senin rolün?</p>
+    <input type="radio" name="q5" value="1"> A) “Ben beklerim, diğerleri halleder.” 😅<br>
+    <input type="radio" name="q5" value="2"> B) Arkadaşlarla birlikte işleri yürütürüm 👯<br>
+    <input type="radio" name="q5" value="3"> C) Görev dağılımı yapar, ekibi motive ederim 📊<br>
+  </div>
+
+  <button onclick="calculateResult()">Sonucu Göster</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function calculateResult() {
+      let total = 0;
+      for (let i = 1; i <= 5; i++) {
+        let answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (answer) total += parseInt(answer.value);
+      }
+
+      let resultDiv = document.getElementById("result");
+      let resultText = "";
+      let resultImage = "";
+
+      if (total <= 5) {
+        resultText = "Rahat Takılan Öğrenci 😎";
+        resultImage = "images/sonuc1.png";
+      } else if (total <= 8) {
+        resultText = "Networker 🤝 – Herkesi tanıyorsun!";
+        resultImage = "images/sonuc2.png";
+      } else if (total <= 11) {
+        resultText = "Lider Adayısın 🚀 – Etkinlikler seninle büyür!";
+        resultImage = "images/sonuc3.png";
+      } else if (total <= 13) {
+        resultText = "Organizatör 📝 – Ekiplerin gizli kahramanı!";
+        resultImage = "images/sonuc4.png";
+      } else {
+        resultText = "Kampüsün CEO’su 👑 – Kulübün başkanı olman an meselesi!";
+        resultImage = "images/sonuc5.png";
+      }
+
+      resultDiv.innerHTML = `
+        <img src="${resultImage}" alt="Sonuç">
+        <p>${resultText}</p>
+      `;
+      resultDiv.style.display = "block";
+      resultDiv.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
